@@ -21,8 +21,10 @@ async function deleteById(id) {
 }
 
 async function updateById(id, newKoderData) {
-    const updateKoder = await Koders.findByIdAndUpdate(id, newKoderData, {new: true});
-    return updateKoder
+  const updateKoder = await Koders.findByIdAndUpdate(id, newKoderData, {
+    new: true,
+  });
+  return updateKoder;
 }
 
 module.exports = {
