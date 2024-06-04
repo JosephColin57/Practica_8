@@ -1,6 +1,14 @@
 const Koders = require("../models/koders.model");
+const createError = require("http-errors");
 
 async function create(koderData) {
+  const koderFound = await Koders.findOne({ email: koderData.email });
+
+  if (koderFound) {
+    // throw new Error("Email already in use");
+    throw createError(409, "Email already in use");
+  }
+
   const newKoder = await Koders.create(koderData);
   return newKoder;
 }
