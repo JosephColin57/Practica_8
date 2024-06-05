@@ -1,11 +1,12 @@
 const express = require("express");
 const kodersUseCase = require("../usecases/koders.usecase");
+const auth = require("../middlewares/auth.middleware");
 
 const router = express.Router();
 
 //GET /koders
 
-router.get("/", async (request, response) => {
+router.get("/", auth, async (request, response) => {
   try {
     const koders = await kodersUseCase.getAll();
 
@@ -43,7 +44,7 @@ router.post("/", async (request, response) => {
 
 //GET /koders/:id
 
-router.get("/:id", async (request, response) => {
+router.get("/:id", auth, async (request, response) => {
   try {
     // deconstruccion es mejor usarla
     const { id } = request.params;
@@ -64,7 +65,7 @@ router.get("/:id", async (request, response) => {
 
 //DELETE /koders/:id
 
-router.delete("/:id", async (request, response) => {
+router.delete("/:id", auth, async (request, response) => {
   try {
     const { id } = request.params;
     const koderDeleted = await kodersUseCase.deleteById(id);
@@ -83,7 +84,7 @@ router.delete("/:id", async (request, response) => {
 
 //PATCH /koders/:id
 
-router.patch("/:id", async (request, response) => {
+router.patch("/:id", auth, async (request, response) => {
   try {
     const { id } = request.params;
     const koderUpdated = await kodersUseCase.updateById(id, request.body);

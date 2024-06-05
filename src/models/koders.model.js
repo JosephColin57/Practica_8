@@ -27,6 +27,10 @@ const Schema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  generation : {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "generations",
+  },
   createdAt : {
     type: Date,
     default: Date.now,
