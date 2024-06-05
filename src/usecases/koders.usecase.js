@@ -1,4 +1,5 @@
 const Koders = require("../models/koders.model");
+const encrypt = require("../lib/encrypt");
 const createError = require("http-errors");
 
 async function create(koderData) {
@@ -8,6 +9,8 @@ async function create(koderData) {
     // throw new Error("Email already in use");
     throw createError(409, "Email already in use");
   }
+
+  koderData.password = await encrypt.encrypt(koderData.password);
 
   const newKoder = await Koders.create(koderData);
   return newKoder;
