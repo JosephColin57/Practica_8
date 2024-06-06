@@ -26,8 +26,8 @@ async function deleteById(id) {
   return await Generations.findByIdAndDelete(id);
 }
 
-async function updateById(id, newKoderData) {
-  return await Generations.findByIdAndUpdate(id, newKoderData, { new: true });
+async function updateById(id, generation) {
+  return await Generations.findByIdAndUpdate(id, generation, { new: true });
 }
 
 module.exports = {
