@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 
 const schema = new mongoose.Schema({
   number: {
-    type: number,
+    type: Number,
     required: true,
     min: 1,
     max: 100,
   },
   program: {
-    type: string,
+    type: String,
     requires: true,
     enum: ["javascript", "python", "ios", "android"],
   },
